@@ -1,19 +1,201 @@
-# React + Vite
+# React.js + Node.js Practical Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Project: Student Event Portal
 
-Currently, two official plugins are available:
+Build a simple **Student Event Portal** using:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* React.js
+* Node.js
+* Express.js
+* Axios or Fetch API
+* React Router
 
-## React Compiler
+**Database is not required.** Use a normal JavaScript array to store users and events in the backend.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## 1. Login Page
 
-## Expanding the Oxlint configuration
+Create a login page with:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+* Email
+* Password
+* Login button
+
+On login:
+
+* Send the entered details to the backend.
+* Backend should validate the user.
+* On successful login, navigate to the Events Home Page.
+* On unsuccessful login, display an error message.
+
+---
+
+## 2. Events Home Page
+
+Create an Events Home Page.
+
+When the page loads:
+
+* Fetch events from the backend.
+* Display all available events.
+
+Each event should contain:
+
+* Event Name
+* Category
+* Location
+* Date
+* Description
+
+Display the events using a reusable React component such as an Event Card.
+
+---
+
+## 3. Search Events
+
+Add a search bar to the Events Home Page.
+
+The user should be able to search events using:
+
+* Event Name
+* Category
+* Location
+
+Implement:
+
+### Debouncing
+
+The search should be performed only after the user stops typing for a short period.
+
+### Fuzzy Search
+
+The search should provide relevant results even when the entered text is not an exact match.
+
+Example:
+
+```text
+Search: react
+
+React Workshop
+React Development Session
+Advanced React
+```
+
+---
+
+## 4. Add Event Page
+
+Create a separate Add Event page.
+
+Create a form with:
+
+* Event Name
+* Category
+* Location
+* Date
+* Description
+
+On form submission:
+
+* Send the event data to the backend.
+* Add the new event to the backend event list.
+* After successful creation, navigate back to the Events Home Page.
+
+---
+
+## 5. Event Details Page
+
+Create an Event Details page.
+
+When a user clicks on an event, navigate to:
+
+```text
+/events/:id
+```
+
+Example:
+
+```text
+/events/1
+/events/2
+```
+
+Use the event ID from the URL to fetch and display the details of that event.
+
+---
+
+## 6. Backend Requirements
+
+Create a Node.js + Express.js backend.
+
+Maintain the data using JavaScript arrays.
+
+Create the following APIs:
+
+### Login
+
+```text
+POST /login
+```
+
+### Get All Events
+
+```text
+GET /events
+```
+
+### Get Single Event
+
+```text
+GET /events/:id
+```
+
+### Create Event
+
+```text
+POST /events
+```
+
+---
+
+## 7. Custom Middleware
+
+Create **one custom authentication middleware** in Express.js.
+
+The middleware must be used for the event-related APIs.
+
+The middleware should check whether the request is authenticated before allowing access to the protected route.
+
+Example flow:
+
+```text
+Request
+   ↓
+Custom Middleware
+   ↓
+Route
+   ↓
+Response
+```
+
+---
+
+## 8. Application Pages
+
+The application should contain:
+
+```text
+Login Page
+Events Home Page
+Add Event Page
+Event Details Page
+```
+
+Use **React Router** for navigation between the pages.
+
+
+
+      .catch((error) => {
+        console.log("Error:", error);
+      });
