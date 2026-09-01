@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 const Home = () => {
     const [events, setEvents] = useState([]);
     const [search, setSearch] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:3000/events")
@@ -16,9 +17,17 @@ const Home = () => {
             });
     }, []);
 
+     useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(search);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [search]);
     const filteredEvents = events.filter((event) =>
         event.event.toLowerCase().includes(search.toLowerCase())
     );
+    
 
     return (
         <div>
